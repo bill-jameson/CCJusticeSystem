@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 namespace cjisAPI
 {
 	public class Juror {
+		/***properties***/
 		public int JurorID { get; set; }
 		public string FirstName { get; set; }
 		public string MiddleInitial { get; set; }
