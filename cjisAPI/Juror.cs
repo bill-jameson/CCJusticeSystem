@@ -1,5 +1,6 @@
 using System;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace cjisAPI
 {
@@ -39,12 +40,8 @@ namespace cjisAPI
 		}
 
 		private void GetData() {
-			string connectionString = "Server=localhost\\SQLEXPRESS;Database=CJIS;Trusted_Connection=True;";
-
-			SqlConnection connection = new SqlConnection(connectionString);
-			connection.Open();
-
-			SqlCommand command = new SqlCommand("EXEC spGetJuror " + JurorID, connection);
+			DataCommand command = new DataCommand("spGetJuror", CommandType.StoredProcedure);
+			command.AddParameter("@jurorId", JurorID);
 
 			SqlDataReader reader = command.ExecuteReader();
 
@@ -77,7 +74,7 @@ namespace cjisAPI
 				//QuestionnaireCompleted = reader.GetBoolean(25);
 			}
 
-			connection.Close();
+			command.Close();
 		}
 
 		public static Juror GetJuror(int jurorId) {

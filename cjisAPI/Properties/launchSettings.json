@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "GetSummonsRecipientLogin?socialLastFour=0001&summonsId=1",
+      "launchUrl": "mobile?socialLastFour=0001&juryId=1",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -20,7 +20,7 @@
     "cjisAPI": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "GetSummonsRecipientLogin?socialLastFour=0001&summonsId=1",
+      "launchUrl": "mobile?socialLastFour=0001&juryId=1",
       "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
