@@ -8,7 +8,7 @@ namespace cjisAPI {
 		public int QuestionnaireResponseID { get; set; }
 		public int JurorID { get; set; }
 		public int QuestionID { get; set; }
-		public string AnswerText { get; set; }
+		public string ResponseValue { get; set; }
 		public int? QuestionnaireAnswerID { get; set; }
 
 
@@ -16,7 +16,7 @@ namespace cjisAPI {
 			QuestionnaireResponseID = (int)dataReader.GetInteger("QuestionnaireResponseID");
 			JurorID = (int)dataReader.GetInteger("JurorID");
 			QuestionID = (int)dataReader.GetInteger("QuestionID");
-			AnswerText = dataReader.GetString("AnswerText");
+			ResponseValue = dataReader.GetString("ResponseValue");
 			QuestionnaireAnswerID = dataReader.GetInteger("QuestionnaireAnswerID");
 		}
 	}
