@@ -5,7 +5,6 @@ using System.Data;
 namespace cjisAPI
 {
 	public class Juror {
-		/***properties***/
 		public int JurorID { get; set; }
 		public string FirstName { get; set; }
 		public string MiddleInitial { get; set; }
@@ -43,13 +42,13 @@ namespace cjisAPI
 			DataCommand command = new DataCommand("spGetJuror", CommandType.StoredProcedure);
 			command.AddParameter("@jurorId", JurorID);
 
-			SqlDataReader reader = command.ExecuteReader();
+			DataReader reader = command.ExecuteReader();
 
 			if (reader.Read()) {
-				JurorID = reader.GetInt32(0);
-				FirstName = reader.GetString(1);
+				JurorID = (int)reader.GetInteger("JurorID");
+				FirstName = reader.GetString("FirstName");
 				//MiddleInitial = reader.GetString(2);
-				LastName = reader.GetString(3);
+				LastName = reader.GetString("LastName");
 				//Address1 = reader.GetString(4);
 				//Address2 = reader.GetString(5);
 				//DateOfBirth = reader.GetDateTime(6);

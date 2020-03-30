@@ -20,12 +20,12 @@ namespace cjisAPI.Controllers
     }
 
     [HttpGet]
-    public Juror GetSummonsRecipientLogin(string socialLastFour, int juryId) {
-      DataCommand command = new DataCommand("EXEC spGetSummonsRecipientLogin '" + socialLastFour + "', " + juryId);
+    public Juror GetSummonsRecipientLogin(string socialLastFour, int jurorId) {
+      DataCommand command = new DataCommand("EXEC spGetSummonsRecipientLogin '" + socialLastFour + "', " + jurorId);
 
-      SqlDataReader dataReader = command.ExecuteReader();
+      DataReader dataReader = command.ExecuteReader();
 
-      Juror juror = dataReader.Read() ? Juror.GetJuror(dataReader.GetInt32(0)) : null;
+      Juror juror = dataReader.Read() ? Juror.GetJuror((int)dataReader.GetInteger("JurorID")) : null;
 
       command.Close();
 

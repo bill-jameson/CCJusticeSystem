@@ -11,19 +11,20 @@ namespace cjisAPI {
   public class DataCommand {
     SqlConnection Connection;
     string Sql;
-    SqlCommand command;
+    SqlCommand sqlCommand;
 
-    public DataCommand(string sql, CommandType commandType = CommandType.Text) {
+    public DataCommand(string sql, CommandType commandType = CommandType.StoredProcedure) {
       Sql = sql;
       string connectionString = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("ConnectionStrings")["DefaultConnection"];
       Connection = new SqlConnection(connectionString);
       Connection.Open();
-      command = new SqlCommand(Sql, Connection);
-      command.CommandType = commandType;
+      sqlCommand = new SqlCommand(Sql, Connection);
+      sqlCommand.CommandType = commandType;
     }
 
-    public SqlDataReader ExecuteReader() {
-      return command.ExecuteReader();
+    public DataReader ExecuteReader() {
+      DataReader dataReader = new DataReader(sqlCommand.ExecuteReader());
+      return dataReader;
     }
 
     public void Close() {
@@ -31,7 +32,7 @@ namespace cjisAPI {
     }
 
     internal void AddParameter(string paramName, object paramValue) {
-      command.Parameters.Add(new SqlParameter(paramName, paramValue));
+      sqlCommand.Parameters.Add(new SqlParameter(paramName, paramValue));
     }
   }
 }
