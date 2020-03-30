@@ -17,6 +17,7 @@ namespace cjisAPI {
 		public bool Enabled { get; set; }
 		public List<QuestionnaireAnswer> _Answers = new List<QuestionnaireAnswer>();
 		public List<QuestionnaireAnswer> Answers { get { return _Answers; } }
+		public QuestionnaireResponse Response { get; set; }
 
 		public QuestionnaireQuestion(DataReader dataReader) {
 			QuestionID = (int)dataReader.GetInteger("QuestionID");

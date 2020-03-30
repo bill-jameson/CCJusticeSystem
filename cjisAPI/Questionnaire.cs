@@ -33,6 +33,25 @@ namespace cjisAPI {
 				QuestionnaireAnswer answer = new QuestionnaireAnswer(dataReader);
 				AddAnswer(answer);
 			}
+
+			command = new DataCommand("spGetQuestionnaireResponses");
+			command.AddParameter("@jurorId", JurorID);
+
+			dataReader = command.ExecuteReader();
+
+			while (dataReader.Read()) {
+				QuestionnaireResponse response = new QuestionnaireResponse(dataReader);
+				AddResponse(response);
+			}
+		}
+
+		private void AddResponse(QuestionnaireResponse response) {
+			foreach (QuestionnaireQuestion question in Questions) {
+				if (question.QuestionID == response.QuestionID) {
+					question.Response = response;
+					break;
+				}
+			}
 		}
 
 		private void AddAnswer(QuestionnaireAnswer answer) {
