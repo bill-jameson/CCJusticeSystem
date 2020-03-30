@@ -15,7 +15,7 @@ namespace cjisAPI {
 
     public DataCommand(string sql, CommandType commandType = CommandType.StoredProcedure) {
       Sql = sql;
-      string connectionString = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("ConnectionStrings")["DefaultConnection"];
+      string connectionString = Environment.GetEnvironmentVariable("CJIS_API_CONNECTION_STRING");
       Connection = new SqlConnection(connectionString);
       Connection.Open();
       sqlCommand = new SqlCommand(Sql, Connection);

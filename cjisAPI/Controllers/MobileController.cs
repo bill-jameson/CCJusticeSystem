@@ -21,7 +21,9 @@ namespace cjisAPI.Controllers
 
     [HttpGet]
     public Juror GetSummonsRecipientLogin(string socialLastFour, int jurorId) {
-      DataCommand command = new DataCommand("EXEC spGetSummonsRecipientLogin '" + socialLastFour + "', " + jurorId);
+      DataCommand command = new DataCommand("spGetSummonsRecipientLogin");
+      command.AddParameter("@socialLastFour", socialLastFour);
+      command.AddParameter("@jurorId", jurorId);
 
       DataReader dataReader = command.ExecuteReader();
 
