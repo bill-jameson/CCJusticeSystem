@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "questionnaire?jurorId=1",
+      "launchUrl": "mobile?socialLastFour=0001&jurorId=1",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

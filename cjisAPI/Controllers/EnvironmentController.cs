@@ -21,7 +21,8 @@ namespace cjisAPI.Controllers
 
     [HttpGet]
     public string GetConnectionString() {
-      return Environment.GetEnvironmentVariable("CJIS_API_CONNECTION_STRING");
+      const string CJIS_API_CONNECTION_STRING = "CJIS_API_CONNECTION_STRING";
+      return CJIS_API_CONNECTION_STRING + ": " + Environment.GetEnvironmentVariable(CJIS_API_CONNECTION_STRING);
     }
   }
 }
