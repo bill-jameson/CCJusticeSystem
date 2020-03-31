@@ -21,17 +21,21 @@ namespace cjisAPI.Controllers
 
     [HttpGet]
     public object GetSummonsRecipientLogin(string socialLastFour, int jurorId) {
-      DataCommand command = new DataCommand("spGetSummonsRecipientLogin");
-      command.AddParameter("@socialLastFour", socialLastFour);
-      command.AddParameter("@jurorId", jurorId);
+      try {
+        DataCommand command = new DataCommand("spGetSummonsRecipientLogin");
+        command.AddParameter("@socialLastFour", socialLastFour);
+        command.AddParameter("@jurorId", jurorId);
 
-      DataReader dataReader = command.ExecuteReader();
+        DataReader dataReader = command.ExecuteReader();
 
-      object juror = dataReader.Read() ? (object)Juror.GetJuror((int)dataReader.GetInteger("JurorID")) : (object)Json.Nothing;
+        object juror = dataReader.Read() ? (object)Juror.GetJuror((int)dataReader.GetInteger("JurorID")) : (object)Json.Nothing;
 
-      command.Close();
+        command.Close();
 
-      return juror;
+        return juror;
+      } catch (Exception e) {
+        return Error.LogError(e);
+      }
     }
   }
 }

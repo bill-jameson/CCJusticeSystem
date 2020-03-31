@@ -27,6 +27,10 @@ namespace cjisAPI {
       return dataReader;
     }
 
+    public void Execute() {
+      sqlCommand.ExecuteNonQuery();
+    }
+
     public void Close() {
       Connection.Close();
     }
