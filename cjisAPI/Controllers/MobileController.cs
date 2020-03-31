@@ -34,7 +34,7 @@ namespace cjisAPI.Controllers
 
         return juror;
       } catch (Exception e) {
-        return Error.LogError(e);
+        return Error.LogError(_logger, e);
       }
     }
   }

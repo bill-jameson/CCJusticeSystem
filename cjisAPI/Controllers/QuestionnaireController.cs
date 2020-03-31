@@ -12,16 +12,20 @@ namespace cjisAPI.Controllers
   [Route("[controller]")]
   public class QuestionnaireController : ControllerBase
   {
-    private readonly ILogger<MobileController> _logger;
+    private readonly ILogger _logger;
 
-    public QuestionnaireController(ILogger<MobileController> logger)
+    public QuestionnaireController(ILogger<QuestionnaireController> logger)
     {
       _logger = logger;
     }
 
     [HttpGet]
-    public Questionnaire GetQuestionnaire(int? jurorId) {
-      return new Questionnaire(jurorId);
+    public object GetQuestionnaire(int? jurorId) {
+      try {
+        return new Questionnaire(jurorId);
+      } catch (Exception e) {
+        return Error.LogError(_logger, e);
+      }
     }
   }
 }
