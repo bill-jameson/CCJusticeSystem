@@ -5,14 +5,14 @@ using System.Threading.Tasks;
 
 namespace cjisAPI {
 	public class QuestionnaireQuestion {
-		public enum QuestionnaireAnswerType { TextOnly = 1, TextEntry = 2, Checkbox = 3 }
-
 		public int QuestionID { get; set; }
+		public string Alias { get; set; }
 		public string Question { get; set; }
+		public int AnswerTypeID;
 		public QuestionnaireAnswerType AnswerType { get; set; }
-		public string StrAnswerType { get { return AnswerType.ToString(); } }
-		public int? GroupID { get; set; }
-		public string GroupAlias { get; set; }
+		public string AnswerSuffix { get; set; }
+		public int? QuestionGroupID;
+		public QuestionnaireQuestionGroup QuestionGroup {get;set;}
 		public int DisplayOrder { get; set; }
 		public bool Enabled { get; set; }
 		public List<QuestionnaireAnswer> _Answers = new List<QuestionnaireAnswer>();
@@ -21,10 +21,13 @@ namespace cjisAPI {
 
 		public QuestionnaireQuestion(DataReader dataReader) {
 			QuestionID = (int)dataReader.GetInteger("QuestionID");
+			Alias = dataReader.GetString("Alias");
 			Question = dataReader.GetString("Question");
-			AnswerType = (QuestionnaireAnswerType)dataReader.GetInteger("AnswerTypeID");
-			GroupID = dataReader.GetInteger("QuestionnaireQuestionGroupID");
-			GroupAlias = dataReader.GetString("QuestionGroupAlias");
+			AnswerTypeID = (int)dataReader.GetInteger("AnswerTypeID");
+			AnswerSuffix = dataReader.GetString("AnswerSuffix");
+			QuestionGroupID = dataReader.GetInteger("QuestionnaireQuestionGroupID");
+			//GroupID = dataReader.GetInteger("QuestionnaireQuestionGroupID");
+			//GroupAlias = dataReader.GetString("QuestionGroupAlias");
 			DisplayOrder = (int)dataReader.GetInteger("DisplayOrder");
 			Enabled = (bool)dataReader.GetBoolean("Enabled");
 		}

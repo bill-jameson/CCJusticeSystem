@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>API Call</title>
+
+    <script>
+        let request = new XMLHttpRequest();
+        request.open("GET", "http://cjisapi.sandbox/mobile?socialLastFour=0001&jurorId=1");
+        request.send();
+        request.onload = () => {
+            alert(request);
+            if (request.status === 200) {
+                alert(request.responseText);
+            } else {
+                alert("error");
+            }
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>
